@@ -38,16 +38,16 @@ final class CachedTotalSupplyProvider implements TotalSupplyProviderInterface
 
     public function getTotalSupply(): int
     {
-        $totalSupply = $this->cache->get(self::CACHE_TOTAL_SUPPLY, function (ItemInterface $item): int {
+        $supply = $this->cache->get(self::CACHE_TOTAL_SUPPLY, function (ItemInterface $item): int {
             $item->expiresAfter((int) $this->parameterBag->get('app.cache_expiration'));
 
             return $this->totalSupplyProvider->getTotalSupply();
         });
 
-        if (! is_int($totalSupply)) {
+        if (! is_int($supply)) {
             throw new LogicException('Unexpected cache value (it must be int).');
         }
 
-        return $totalSupply;
+        return $supply;
     }
 }
