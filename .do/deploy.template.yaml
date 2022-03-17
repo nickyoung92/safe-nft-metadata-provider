@@ -59,7 +59,7 @@ spec:
           value: https://mainnet.infura.io/v3/YOUR_PROJECT_ID_HERE
       git:
         branch: main
-        repo_clone_url: https://github.com/hashlips-lab/safe-nft-metadata-provider.git
+        repo_clone_url: https://github.com/nickyoung92/safe-nft-metadata-provider.git
       http_port: 8080
       instance_count: 1
       instance_size_slug: basic-xxs
