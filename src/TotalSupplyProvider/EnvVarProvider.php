@@ -21,12 +21,12 @@ use App\Contract\TotalSupplyProviderInterface;
 final class EnvVarProvider implements TotalSupplyProviderInterface
 {
     public function __construct(
-        private readonly int $totalSupply,
+        private readonly int $supply,
     ) {
     }
 
     public function getTotalSupply(): int
     {
-        return $this->totalSupply;
+        return $this->supply;
     }
 }
