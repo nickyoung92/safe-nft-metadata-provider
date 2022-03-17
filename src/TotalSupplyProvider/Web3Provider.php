@@ -25,7 +25,7 @@ use RuntimeException;
  */
 final class Web3Provider implements TotalSupplyProviderInterface
 {
-    private int $totalSupply;
+    private int $supply;
 
     private readonly SmartContract $contract;
 
@@ -43,18 +43,18 @@ final class Web3Provider implements TotalSupplyProviderInterface
 
     public function getTotalSupply(): int
     {
-        if (! isset($this->totalSupply)) {
+        if (! isset($this->supply)) {
             /** @var CollectionContractInterface $smartContract */
             $smartContract = $this->contract;
-            $totalSupply = $smartContract->totalSupply()->val();
+            $supply = $smartContract->supply()->val();
 
             if (! is_int($totalSupply)) {
-                throw new RuntimeException('Unexpected result from "totalSupply" call: "'.$totalSupply.'"');
+                throw new RuntimeException('Unexpected result from "totalSupply" call: "'.$supply.'"');
             }
 
-            $this->totalSupply = $totalSupply;
+            $this->supply = $supply;
         }
 
-        return $this->totalSupply;
+        return $this->supply;
     }
 }
