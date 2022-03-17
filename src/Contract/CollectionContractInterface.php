@@ -20,5 +20,5 @@ use Ethereum\DataType\EthQ;
  */
 interface CollectionContractInterface
 {
-    public function totalSupply(): EthQ;
+    public function supply(): EthQ;
 }
