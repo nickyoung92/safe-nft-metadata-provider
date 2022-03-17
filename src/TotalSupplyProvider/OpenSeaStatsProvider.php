@@ -21,7 +21,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  */
 final class OpenSeaStatsProvider implements TotalSupplyProviderInterface
 {
-    private int $totalSupply;
+    private int $supply;
 
     public function __construct(
         private readonly string $collectionSlug,
@@ -31,16 +31,16 @@ final class OpenSeaStatsProvider implements TotalSupplyProviderInterface
 
     public function getTotalSupply(): int
     {
-        if (! isset($this->totalSupply)) {
+        if (! isset($this->supply)) {
             $response = $this->httpClient->request(
                 'GET',
                 'https://api.opensea.io/api/v1/collection/'.$this->collectionSlug,
             );
             $jsonContent = $response->toArray();
 
-            $this->totalSupply = (int) $jsonContent['collection']['stats']['total_supply'];
+            $this->supply = (int) $jsonContent['collection']['stats']['total_supply'];
         }
 
-        return $this->totalSupply;
+        return $this->supply;
     }
 }
